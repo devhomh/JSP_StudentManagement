@@ -8,12 +8,21 @@
   <link rel="stylesheet" href="https://unpkg.com/mvp.css">
 </head>
 <body>
+  <c:choose>
+    <c:when test="${empty student}">
+      <c:set var="action" value="/student/register.do" />
+    </c:when>
+    <c:otherwise>
+      <c:set var="action" value="/student/update.do" />
+    </c:otherwise>
+  </c:choose>
+
   <form method="POST" action="${action}">
     <label for="id">ID</label>
-    <input id="id" name="id" placeholder="abcd" type="text" value="${student == null ? null : student.id}" required/>
+    <input id="id" name="id" placeholder="abcd" type="text" value="${student.id}" required/>
     <br/>
     <label for="name">이름</label>
-    <input id="name" name="name" placeholder="홍길동" type="text" value="${student == null ? null : student.name}" required/>
+    <input id="name" name="name" placeholder="홍길동" type="text" value="${student.name}" required/>
     <br/>
     <label>성별</label>
     <label>
@@ -24,7 +33,7 @@
     </label>
     <br/>
     <label for="age">나이</label>
-    <input id="age" name="age" type="number" value="${student == null ? null : student.age}" required/>
+    <input id="age" name="age" type="number" value="${student.age}" required/>
     <br/>
     <button type="submit">
       <c:choose>

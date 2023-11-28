@@ -1,4 +1,4 @@
-package com.nhnacademy.student.domain;
+package com.nhnacademy.student.common.domain;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

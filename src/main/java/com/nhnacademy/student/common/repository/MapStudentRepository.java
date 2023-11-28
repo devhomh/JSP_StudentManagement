@@ -1,6 +1,6 @@
-package com.nhnacademy.student.repository;
+package com.nhnacademy.student.common.repository;
 
-import com.nhnacademy.student.domain.Student;
+import com.nhnacademy.student.common.domain.Student;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

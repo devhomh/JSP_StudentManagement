@@ -1,6 +1,6 @@
-package com.nhnacademy.student.repository;
+package com.nhnacademy.student.common.repository;
 
-import com.nhnacademy.student.domain.Student;
+import com.nhnacademy.student.common.domain.Student;
 import java.util.List;
 
 public interface StudentRepository {
