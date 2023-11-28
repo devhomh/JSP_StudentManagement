@@ -1,11 +1,10 @@
 package com.nhnacademy.student.servlet;
 
-import com.nhnacademy.student.Gender;
-import com.nhnacademy.student.Student;
-import com.nhnacademy.student.StudentRepository;
+import com.nhnacademy.student.domain.Gender;
+import com.nhnacademy.student.domain.Student;
+import com.nhnacademy.student.repository.StudentRepository;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,8 +27,9 @@ public class StudentRegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("action", "/student/register");
-        RequestDispatcher rd = req.getRequestDispatcher("/student/register.jsp");
-        rd.forward(req, resp);
+//        RequestDispatcher rd = req.getRequestDispatcher("/student/register.jsp");
+//        rd.forward(req, resp);
+        req.setAttribute("view", "/student/register.jsp");
     }
 
     @Override
@@ -44,8 +44,9 @@ public class StudentRegisterServlet extends HttpServlet {
             //todo save 구현
             studentRepository.save(new Student(id, name, gender, age, LocalDateTime.now()));
 
-            //todo redirect /student/view?id=student1
-            resp.sendRedirect("/student/list");
+//            //todo redirect /student/view?id=student1
+//            resp.sendRedirect("/student/view?id=" + id);
+            req.setAttribute("view", "redirect:/student/view?id=" + id);
 
         } catch(NullPointerException | NumberFormatException e){
             e.getStackTrace();

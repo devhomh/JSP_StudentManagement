@@ -32,15 +32,15 @@
     </tbody>
 </table>
 <div>
-    <button onclick="location.href='/student/list'">리스트</button>
-    <c:url var="update_link" value="/student/update">
+    <button onclick="location.href='/student/list.do'">리스트</button>
+    <c:url var="update_link" value="/student/update.do">
         <c:param name="id" value="${student.id}" />
     </c:url>
     <button onclick="location.href='${update_link}'">
         수정
     </button>
  </div>
-<c:url var="delete_link" value="/student/delete">
+<c:url var="delete_link" value="/student/delete.do">
     <c:param name="id" value="${student.id}" />
 </c:url>
 <form method="POST" action="${delete_link}">

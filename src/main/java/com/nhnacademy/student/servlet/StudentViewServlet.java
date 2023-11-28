@@ -1,8 +1,8 @@
 package com.nhnacademy.student.servlet;
 
-import com.nhnacademy.student.StudentRepository;
+import com.nhnacademy.student.repository.StudentRepository;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
+import java.util.Objects;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,17 +23,18 @@ public class StudentViewServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            //todo id null check
-            String id = req.getParameter("id");
-            //todo student 조회
-            req.setAttribute("student",studentRepository.getStudentById(id));
-            //todo /student/view.jsp <-- forward
-            RequestDispatcher rd = req.getRequestDispatcher("/student/view.jsp");
-            rd.forward(req, resp);
-        } catch(NullPointerException e){
-            e.getStackTrace();
+        //todo id null check
+        String id = req.getParameter("id");
+        if(Objects.isNull(id)){
+            throw new RuntimeException("parameter [id] : null ");
         }
+        //todo student 조회
+        req.setAttribute("student",studentRepository.getStudentById(id));
+        //todo /student/view.jsp <-- forward
+
+//            RequestDispatcher rd = req.getRequestDispatcher("/student/view.jsp");
+//            rd.forward(req, resp);
+        req.setAttribute("view", "/student/view.jsp");
     }
 
 }

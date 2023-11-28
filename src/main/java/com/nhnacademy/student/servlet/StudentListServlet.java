@@ -1,10 +1,9 @@
 package com.nhnacademy.student.servlet;
 
-import com.nhnacademy.student.Student;
-import com.nhnacademy.student.StudentRepository;
+import com.nhnacademy.student.domain.Student;
+import com.nhnacademy.student.repository.StudentRepository;
 import java.io.IOException;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,8 +30,9 @@ public class StudentListServlet extends HttpServlet {
         req.setAttribute("studentList",studentList);
 
         // /student/list.jsp <- forward 하기
-        RequestDispatcher rd = req.getRequestDispatcher("/student/list.jsp");
-        rd.forward(req, resp);
+//        RequestDispatcher rd = req.getRequestDispatcher("/student/list.jsp");
+//        rd.forward(req, resp);
+        req.setAttribute("view", "/student/list.jsp");
     }
 
 }

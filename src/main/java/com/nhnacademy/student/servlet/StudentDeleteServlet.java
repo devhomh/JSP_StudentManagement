@@ -1,6 +1,6 @@
 package com.nhnacademy.student.servlet;
 
-import com.nhnacademy.student.StudentRepository;
+import com.nhnacademy.student.repository.StudentRepository;
 import java.io.IOException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -32,6 +32,7 @@ public class StudentDeleteServlet extends HttpServlet {
             throw new RuntimeException("Not exist ID.");
         }
         //todo /student/list <-- redirect
-        resp.sendRedirect("/student/list");
+//        resp.sendRedirect("/student/list");
+        req.setAttribute("view", "redirect:/student/list");
     }
 }

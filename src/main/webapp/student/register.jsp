@@ -17,10 +17,10 @@
     <br/>
     <label>성별</label>
     <label>
-      <input class="gender" type="radio" name="gender" ${"M".equals(student.gender.toString()) ? "checked" : ""} required> 남
+      <input class="gender" type="radio" name="gender" ${"M".equals(student.gender.toString()) ? "checked" : ""} value="male" required> 남
     </label>
     <label>
-      <input class="gender" type="radio" name="gender" ${"F".equals(student.gender.toString()) ? "checked" : ""} required> 여
+      <input class="gender" type="radio" name="gender" ${"F".equals(student.gender.toString()) ? "checked" : ""} value="female" required> 여
     </label>
     <br/>
     <label for="age">나이</label>

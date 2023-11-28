@@ -10,7 +10,7 @@
 
 <body>
 <h1>학생 리스트</h1>
-<p><a href="/student/register" >학생(등록)</a></p>
+<p><a href="/student/register.do" >학생(등록)</a></p>
 <table>
     <thead>
     <tr>
@@ -28,7 +28,7 @@
             <th>${student.name}</th>
             <th>${student.gender}</th>
             <th>${student.age}</th>
-            <th><a href="/student/view?id=${student.id}">조회</a></th>
+            <th><a href="/student/view.do?id=${student.id}">조회</a></th>
         </tr>
     </c:forEach>
     </tbody>

@@ -1,4 +1,4 @@
-package com.nhnacademy.student;
+package com.nhnacademy.student.filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;

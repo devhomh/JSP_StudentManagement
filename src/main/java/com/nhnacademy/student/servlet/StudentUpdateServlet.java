@@ -1,11 +1,10 @@
 package com.nhnacademy.student.servlet;
 
-import com.nhnacademy.student.Gender;
-import com.nhnacademy.student.Student;
-import com.nhnacademy.student.StudentRepository;
+import com.nhnacademy.student.domain.Gender;
+import com.nhnacademy.student.domain.Student;
+import com.nhnacademy.student.repository.StudentRepository;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,8 +30,9 @@ public class StudentUpdateServlet extends HttpServlet {
         req.setAttribute("student", studentRepository.getStudentById(id));
 
         //todo forward : /student/register.jsp
-        RequestDispatcher rd = req.getRequestDispatcher("/student/register.jsp");
-        rd.forward(req, resp);
+//        RequestDispatcher rd = req.getRequestDispatcher("/student/register.jsp");
+//        rd.forward(req, resp);
+        req.setAttribute("view", "/student/register.jsp");
     }
 
     @Override
@@ -48,7 +48,8 @@ public class StudentUpdateServlet extends HttpServlet {
             studentRepository.update(new Student(id, name, gender, age, LocalDateTime.now()));
 
             //todo redirect /student/view?id=student1
-            resp.sendRedirect("/student/list");
+//            resp.sendRedirect("/student/view?id=" + id);
+            req.setAttribute("view", "redirect:/student/view?id=" + id);
 
         } catch(NullPointerException | NumberFormatException e){
             e.getStackTrace();
