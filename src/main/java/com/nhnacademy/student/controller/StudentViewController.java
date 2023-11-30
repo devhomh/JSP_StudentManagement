@@ -1,11 +1,13 @@
 package com.nhnacademy.student.controller;
 
+import com.nhnacademy.student.common.mvc.annotation.RequestMapping;
 import com.nhnacademy.student.common.mvc.controller.Command;
 import com.nhnacademy.student.common.repository.StudentRepository;
 import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@RequestMapping(value = "/student/view.do")
 public class StudentViewController implements Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {

@@ -2,10 +2,12 @@ package com.nhnacademy.student.controller;
 
 import static javax.servlet.RequestDispatcher.*;
 
+import com.nhnacademy.student.common.mvc.annotation.RequestMapping;
 import com.nhnacademy.student.common.mvc.controller.Command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@RequestMapping(value = "/error.do")
 public class ErrorController implements Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) {
