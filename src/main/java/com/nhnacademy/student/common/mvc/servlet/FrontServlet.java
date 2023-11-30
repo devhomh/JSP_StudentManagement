@@ -4,7 +4,6 @@ import static javax.servlet.RequestDispatcher.*;
 
 import com.nhnacademy.student.common.mvc.controller.Command;
 import com.nhnacademy.student.common.mvc.controller.ControllerFactory;
-import com.nhnacademy.student.controller.*;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,10 +25,7 @@ public class FrontServlet extends HttpServlet {
 
         try {
             ControllerFactory factory = (ControllerFactory) req.getServletContext().getAttribute("controllerFactory");
-            log.info(req.getServletPath());
             Command command = (Command) factory.getBean(req.getMethod(), req.getServletPath());
-            log.info(command.toString());
-            log.info(command.execute(req, resp));
             String view = command.execute(req, resp);
 
             if (view.startsWith(REDIRECT_PREFIX)) {
@@ -55,26 +51,4 @@ public class FrontServlet extends HttpServlet {
             rd.forward(req,resp);
         }
     }
-
-//    private Command resolveCommand(String servletPath, String method){
-//        Command command = null;
-//        if("/student/list.do".equals(servletPath) && "GET".equalsIgnoreCase(method) ){
-//            command = new StudentListController();
-//        }else if("/student/view.do".equals(servletPath) && "GET".equalsIgnoreCase(method) ){
-//            command = new StudentViewController();
-//        }else if("/student/delete.do".equals(servletPath) && "POST".equalsIgnoreCase(method) ){
-//            command = new StudentDeleteController();
-//        }else if("/student/update.do".equals(servletPath) && "GET".equalsIgnoreCase(method) ){
-//            command = new StudentUpdateFormController();
-//        }else if("/student/update.do".equals(servletPath) && "POST".equalsIgnoreCase(method) ){
-//            command = new StudentUpdateController();
-//        }else if("/student/register.do".equals(servletPath) && "GET".equalsIgnoreCase(method) ){
-//            command = new StudentRegisterFormController();
-//        }else if("/student/register.do".equals(servletPath) && "POST".equalsIgnoreCase(method) ){
-//            command = new StudentRegisterController();
-//        }else if("/error.do".equals(servletPath)){
-//            command = new ErrorController();
-//        }
-//        return command;
-//    }
 }
