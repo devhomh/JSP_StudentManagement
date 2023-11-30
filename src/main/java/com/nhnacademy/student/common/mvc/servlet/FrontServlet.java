@@ -23,31 +23,22 @@ public class FrontServlet extends HttpServlet {
         resp.setContentType("text/html; charset=utf-8");
         resp.setCharacterEncoding("UTF-8");
 
-        try {
-            ControllerFactory factory = (ControllerFactory) req.getServletContext().getAttribute("controllerFactory");
-            Command command = (Command) factory.getBean(req.getMethod(), req.getServletPath());
-            String view = command.execute(req, resp);
+        ControllerFactory factory = (ControllerFactory) req.getServletContext().getAttribute("controllerFactory");
+        Command command = (Command) factory.getBean(req.getMethod(), req.getServletPath());
+        String view = command.execute(req, resp);
 
+        try {
             if (view.startsWith(REDIRECT_PREFIX)) {
                 view = view.substring(REDIRECT_PREFIX.length() + 1);
                 log.info("redirect-url : {}", view);
-                //todo `redirect:`로 시작하면 redirect 처리.
                 resp.sendRedirect(view);
             } else {
                 //todo redirect 아니면 JSP에게 view 처리를 위임하여 그 결과를 include 처리.
-                log.info(view);
                 RequestDispatcher rd = req.getRequestDispatcher(view);
                 rd.include(req, resp);
             }
         }catch (Exception ex){
-            //공통 error 처리
-            req.setAttribute("status_code", req.getAttribute(ERROR_STATUS_CODE));
-            req.setAttribute("exception_type", req.getAttribute(ERROR_EXCEPTION_TYPE));
-            req.setAttribute("message", req.getAttribute(ERROR_MESSAGE));
-            req.setAttribute("exception", req.getAttribute(ERROR_EXCEPTION));
-            req.setAttribute("request_uri", req.getAttribute(ERROR_REQUEST_URI));
-            log.error("status_code:{}", req.getAttribute(ERROR_STATUS_CODE));
-            RequestDispatcher rd = req.getRequestDispatcher("/error.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher(view);
             rd.forward(req,resp);
         }
     }
